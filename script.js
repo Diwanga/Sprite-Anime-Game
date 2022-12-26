@@ -8,8 +8,9 @@ console.log(ctx);
 
 const playerImage = new Image(); // image constructor
 playerImage.src = './project1/shadow_dog.png'
-let x = 0;
-
+//let x = 0;
+let frameX =4;
+let frameY =0;
 
 
 function animate(){
@@ -18,11 +19,9 @@ function animate(){
   //  ctx.drawImage(playerImage, 0, 0 ,CANVAS_WIDTH, CANVAS_HEIGHT);
     // ctx.drawImage(playerImage,0,0)
     // ctx.drawImage(playerImage,sx,sv,sw,sh,dx,dy,dw,dh); // drawimage mthd has 3 versions
- ctx.drawImage(playerImage,0*SPRITE_WIDTH,2*SPRITE_HEIGHT,575,523,0,0,SPRITE_WIDTH,SPRITE_HEIGHT); // drawimage mthd has 3 versions
-
+ ctx.drawImage(playerImage,frameX*SPRITE_WIDTH,frameY*SPRITE_HEIGHT,575,523,0,0,SPRITE_WIDTH,SPRITE_HEIGHT); // drawimage mthd has 3 versions
 //    x++;
     requestAnimationFrame(animate);// only one time
-   
 }
 animate();
 //sprite sheet Width = 6876px /12   573 
