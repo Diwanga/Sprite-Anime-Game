@@ -1,11 +1,16 @@
+let animation = "jump";
+const dropDown = document.getElementById("animation");
+dropDown.addEventListener('change',function(e){
+    animation=e.target.value;
+});
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 600;
 const CANVAS_HEIGHT = canvas.height = 600;
 const SPRITE_HEIGHT = canvas.height = 523;
 const SPRITE_WIDTH = canvas.height = 575;
-console.log(ctx);
-const animation = "dizzy";
+
+
 
 const playerImage = new Image(); // image constructor
 playerImage.src = './project1/shadow_dog.png'
@@ -78,6 +83,8 @@ animationStates.forEach((state,index) =>{
 
 })
 // console.log(spriteAnimation["idle"].loc[3].y);
+
+
 
 function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
