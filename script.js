@@ -12,14 +12,40 @@ playerImage.src = './project1/shadow_dog.png'
 let frameX = 0;
 let frameY = 3;
 let gameFrame = 0;
-const straggerFrames = 5;
+const straggerFrames = 6;
+const spriteAnimation = [];
+const animationStates = [
+    {
+        name: "idle",
+        frames:7
+    },
+    {
+        name: "jump",
+        frames:7
+    }
+]
 
+animationStates.forEach((state,index) =>{
+    let frames = {
+        loc:[],
+    }
+    for(let j = 0;j<state.frames;j++){
+        let positionX = j * SPRITE_WIDTH;
+        let positionY = index * SPRITE_HEIGHT;
+        frames.loc.push({x:positionX,y:positionY});       
+    }
+    // spriteAnimation.push({[state.name] : frames});
+    spriteAnimation[state.name] = frames;
+
+})
+console.log(spriteAnimation);
 
 function animate() {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-   let position = Math.floor(gameFrame/straggerFrames) % 6;// **
+   let position = Math.floor(gameFrame/straggerFrames) % 6;// * CLEAN METHOD*
   frameX = SPRITE_WIDTH * position;
-   ctx.drawImage(playerImage, frameX, frameY * SPRITE_HEIGHT, 575, 523, 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT); // drawimage mthd has 3 versions
+   ctx.drawImage(playerImage, frameX, frameY * SPRITE_HEIGHT, 575, 523,
+                                 0, 0, SPRITE_WIDTH, SPRITE_HEIGHT); // drawimage mthd has 3 versions
 
     gameFrame++;
     requestAnimationFrame(animate);// only one time
