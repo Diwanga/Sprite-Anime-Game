@@ -13,10 +13,9 @@ let x = 0;
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     ctx.fillRect(x,50,100,100);
+    requestAnimationFrame(animate);// only one time
     x++;
-    
-     
-    
+
 
 }
-requestAnimationFrame(animate);// only one time
+animate();
