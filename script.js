@@ -9,18 +9,28 @@ console.log(ctx);
 const playerImage = new Image(); // image constructor
 playerImage.src = './project1/shadow_dog.png'
 //let x = 0;
-let frameX =4;
-let frameY =0;
+let frameX =0;
+let frameY = 9;
+let gameFrame= 0;
+const straggerFrames = 5;
 
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
  //   ctx.fillRect(x,50,100,100);
   //  ctx.drawImage(playerImage, 0, 0 ,CANVAS_WIDTH, CANVAS_HEIGHT);
-    // ctx.drawImage(playerImage,0,0)
-    // ctx.drawImage(playerImage,sx,sv,sw,sh,dx,dy,dw,dh); // drawimage mthd has 3 versions
- ctx.drawImage(playerImage,frameX*SPRITE_WIDTH,frameY*SPRITE_HEIGHT,575,523,0,0,SPRITE_WIDTH,SPRITE_HEIGHT); // drawimage mthd has 3 versions
+  // ctx.drawImage(playerImage,0,0)
+ // ctx.drawImage(playerImage,sx,sv,sw,sh,dx,dy,dw,dh); // drawimage mthd has 3 versions
+    ctx.drawImage(playerImage,frameX*SPRITE_WIDTH,frameY*SPRITE_HEIGHT,575,523,0,0,SPRITE_WIDTH,SPRITE_HEIGHT); // drawimage mthd has 3 versions
 //    x++;
+if(gameFrame % straggerFrames == 0){
+    if(frameX<6){
+        frameX++;
+    }else{
+        frameX=0;
+    }
+}
+    gameFrame++;
     requestAnimationFrame(animate);// only one time
 }
 animate();
