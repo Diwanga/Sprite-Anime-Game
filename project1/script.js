@@ -1,4 +1,4 @@
-let animation = "jump";
+let animation = "idle";
 const dropDown = document.getElementById("animation");
 dropDown.addEventListener('change',function(e){
     animation=e.target.value;
@@ -13,7 +13,7 @@ const SPRITE_WIDTH = canvas.height = 575;
 
 
 const playerImage = new Image(); // image constructor
-playerImage.src = './project1/shadow_dog.png'
+playerImage.src = 'shadow_dog.png'
 //let x = 0;
 let gameFrame = 0;
 const straggerFrames = 6;
@@ -79,7 +79,7 @@ animationStates.forEach((state,index) =>{
         frames.loc.push({x:positionX,y:positionY});       
     }
     // spriteAnimation.push({[state.name] : frames});
-    spriteAnimation[state.name] = frames;
+    spriteAnimation[state.name] = frames;  // this make spriteAnimation to object(named keys has only in objects)
 
 })
 // console.log(spriteAnimation["idle"].loc[3].y);
@@ -95,7 +95,7 @@ function animate() {
                                  0, 0, SPRITE_WIDTH, SPRITE_HEIGHT); // drawimage mthd has 3 versions
 
     gameFrame++;
-    requestAnimationFrame(animate);// only one time
+    requestAnimationFrame(animate);// only one time execute
 }
 animate();
 
