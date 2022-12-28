@@ -1,4 +1,5 @@
 const canvas = document.getElementById('canvas');
+let gameSpeed = 5;
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
@@ -17,25 +18,61 @@ backgroundLayer4.src = './backgroundLayers/layer-4.png'
 
 const backgroundLayer5 = new Image();
 backgroundLayer5.src = './backgroundLayers/layer-5.png'
+// Order Id: yNBgF167221813997187 & Transaction Id: pi_3MJvWiSGrxXfylh21f7HKBnM
+class Layer {
+     constructor(image,speedModifier){
+            this.x=0;
+            this.y=0;
+            this.width = 2400;
+            this.height=700;
+            this.x2=this.width;
+            this.image=image;
+            this.speedModifier =speedModifier;
+            this.speed = gameSpeed * this.speedModifier
+     }
+            update(){
+                this.speed = gameSpeed * this.speedModifier;
+
+                if(this.x <= -this.width){
+                    this.x = this.width + this.x2 - this.speed;
+                }
+            
+                if(this.x2 <= -this.width){
+                    this.x2 = this.width + this.x - this.speed;
+                }
+
+                this.x = Math.floor(this.x - this.speed);
+                this.x2 = Math.floor(this.x2 - this.speed);
+
+            }
+            draw(){
+                ctx.drawImage(this.image,this.x,this.y,this.width,this.height);
+                ctx.drawImage(this.image,this.x2,this.y,this.width,this.height);
+            
+     }
 
 
-let gameSpeed = 5;
+}
 
-let x =0;
-let y = 2400;
+
+const layer1 = new Layer(backgroundLayer1,0.4);
+const layer2 = new Layer(backgroundLayer2,0.5);
+const layer3 = new Layer(backgroundLayer3,0.6);
+const layer4 = new Layer(backgroundLayer4,0.8);
+const layer5 = new Layer(backgroundLayer5,1);
+
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-    ctx.drawImage(backgroundLayer1, x, 0);
-   if(x == -2400) x = 2400 - gameSpeed +y;
-   else x=x-gameSpeed;
-
-    ctx.drawImage(backgroundLayer5, y, 0);
-
-    if(y == -2400) y = 2400 -gameSpeed +x;  // adding x and -gamspeed are done for remove space
-    else y=y-gameSpeed;
-   
-
+    layer1.update();
+    layer1.draw();
+    layer2.update();
+    layer3.draw();
+    layer3.update();
+    layer3.draw();
+    layer4.update();
+    layer4.draw();
+    layer5.update();
+    layer5.draw();
     requestAnimationFrame(animate);
 }
 animate();
