@@ -1,5 +1,14 @@
 const canvas = document.getElementById('canvas');
+const slider = document.getElementById('slider');
+const showGameSpeed = document.getElementById('showGameSpeed');
+
 let gameSpeed = 5;
+showGameSpeed.innerHTML = gameSpeed;
+slider.addEventListener("change",e=>{
+    gameSpeed= e.target.value;
+    showGameSpeed.innerHTML = gameSpeed;
+
+})
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
